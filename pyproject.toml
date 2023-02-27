@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "calculator"
+version = "0.1.0"
+description = "Calculator over HTTP"
+authors = ["yasinyildiza"]
+readme = "README.md"
+packages = [{include = "calculator"}]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.2.2"
+pydantic = "^1.10.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.21.0"
+
+[tool.flake8]
+max-line-length = 88
+
+[tool.bandit]
+exclude_dirs = ["tests",]
+severity-level = "low"
+recursive = true
+
+[tool.isort]
+force_single_line = true
+profile = "black"
+
+[tool.pydocstyle]
+ignore = ["D100","D101","D102","D103","D104","D105","D106","D107","D213","D203","D407","D406","D413"]
+
+[tool.mypy]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-vvv --cov"
+
+[tool.coverage.run]
+source = ["calculator", "tests"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
